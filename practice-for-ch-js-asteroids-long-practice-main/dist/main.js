@@ -20,13 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _asteroid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./asteroid */ \"./src/asteroid.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\n\nclass Game {\n    static DIM_X = 500\n    static DIM_Y = 500\n    static NUM_ASTEROIDS;\n\n    constructor(astAmount) {\n        this.asteroids = []\n        this.addAsteroids(astAmount)\n    }\n\n    setDim(x, y) {\n        Game.DIM_X = x\n        Game.DIM_Y = y\n    }\n\n    addAsteroids(amount) {\n        Game.NUM_ASTEROIDS += amount\n        for (let i = 0; i < amount; i++) {\n            let newAst = new _asteroid__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({pos: this.randomPosition()})\n            this.asteroids.push(newAst)\n        }\n    }\n\n    randomPosition() {\n        return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.randomPos)(Game.DIM_X, Game.DIM_Y)\n    }\n\n    draw(ctx) {\n        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y)\n        ctx.fillStyle = 'salmon';\n        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);\n        this.asteroids.forEach(ast => {\n            ast.draw(ctx)\n        })\n    }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Game);\n\n\n//# sourceURL=webpack://practice-for-ch-js-asteroids-long-practice-main/./src/game.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving-object.js */ \"./src/moving-object.js\");\n/* harmony import */ var _asteroid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./asteroid.js */ \"./src/asteroid.js\");\n\n\n\nwindow.MovingObject = _moving_object_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\n\nconst canvasEl = document.getElementById('game-canvas');\ncanvasEl.width = window.innerWidth;\ncanvasEl.height = window.innerHeight;\n\nconst ctx = canvasEl.getContext('2d');\nctx.fillStyle = 'salmon';\nctx.fillRect(0, 0, canvasEl.width,canvasEl.height);\n\nconst mo = new _moving_object_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    pos: [30, 30],\n    vel: [10, 10],\n    radius: 5,\n    color: \"#00FF00\"\n});\nmo.draw(ctx);\nmo.move();\nmo.draw(ctx);\nconst ast = new _asteroid_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({ pos: [100, 100] });\nast.draw(ctx);\n\n\n//# sourceURL=webpack://practice-for-ch-js-asteroids-long-practice-main/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving-object.js */ \"./src/moving-object.js\");\n/* harmony import */ var _asteroid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./asteroid.js */ \"./src/asteroid.js\");\n/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\n\n\n\nwindow.MovingObject = _moving_object_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nwindow.Game = _game_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n\nconst canvasEl = document.getElementById('game-canvas');\ncanvasEl.width = window.innerWidth;\ncanvasEl.height = window.innerHeight;\n\nconst ctx = canvasEl.getContext('2d');\n// ctx.fillStyle = 'salmon';\n// ctx.fillRect(0, 0, canvasEl.width,canvasEl.height);\n\nconst mo = new _moving_object_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    pos: [30, 30],\n    vel: [10, 10],\n    radius: 5,\n    color: \"#00FF00\"\n});\n// mo.draw(ctx);\n// mo.move();\n// mo.draw(ctx);\n// const ast = new Asteroid({ pos: [100, 100] });\n// // console.log(ast.velocity)\n// ast.draw(ctx);\nconst game = new _game_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"](3)\ngame.setDim(50, 500)\ngame.draw(ctx)\n\n\n//# sourceURL=webpack://practice-for-ch-js-asteroids-long-practice-main/./src/index.js?");
 
 /***/ }),
 
@@ -46,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   randomVec: () => (/* binding */ randomVec),\n/* harmony export */   scale: () => (/* binding */ scale)\n/* harmony export */ });\n// Return a randomly oriented vector with the given length.\nfunction randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return scale([Math.sin(deg), Math.cos(deg)], length);\n}\n\n// Scale the length of a vector by the given amount.\nfunction scale(vec, m) {\n    return [vec[0] * m, vec[1] * m];\n}\n\n//# sourceURL=webpack://practice-for-ch-js-asteroids-long-practice-main/./src/utils.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   randomPos: () => (/* binding */ randomPos),\n/* harmony export */   randomVec: () => (/* binding */ randomVec),\n/* harmony export */   scale: () => (/* binding */ scale)\n/* harmony export */ });\n// Return a randomly oriented vector with the given length.\nfunction randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return scale([Math.sin(deg), Math.cos(deg)], length);\n}\n\nfunction randomPos(x, y) {\n    return [Math.floor(Math.random() * x), Math.floor(Math.random() * y)]\n}\n\n// Scale the length of a vector by the given amount.\nfunction scale(vec, m) {\n    return [vec[0] * m, vec[1] * m];\n}\n\n\n//# sourceURL=webpack://practice-for-ch-js-asteroids-long-practice-main/./src/utils.js?");
 
 /***/ })
 

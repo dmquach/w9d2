@@ -28,13 +28,19 @@ class Game {
     }
 
     draw(ctx) {
-        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y)
+        ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
         ctx.fillStyle = 'salmon';
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
         this.asteroids.forEach(ast => {
             ast.draw(ctx)
         })
     }
+
+    moveObjects() {
+        this.asteroids.forEach(function(ast) {
+            ast.move();
+        });
+    }
 }
 
-export default Game
+export default Game;
